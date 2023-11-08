@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class CatManager : MonoBehaviour
 {
-    [SerializeField] private int _catHearts = 3;        //catHearts = 3
-    [SerializeField] private bool _isFollowing = true;  //isFollowing = true
-    [SerializeField] private GameObject _player;        //player = reference to PlayerObject
+    [SerializeField] private int _catHearts = 3;        // cat health
+    [SerializeField] private bool _isFollowing = true;  // bool to follow player
+    [SerializeField] private GameObject _player;        // reference to PlayerObject
+
+    //Settings for following player
+    [SerializeField] private float _followSpeed;
+    public Transform followPlayer;
+    [SerializeField] private float _stoppingDistance = 0.10f;
 
     private void Update()
     {
@@ -17,16 +22,23 @@ public class CatManager : MonoBehaviour
     }
 
     // Function to make the cat follow the player
-    //function followPlayer():
     private void FollowPlayer()
     {
         //     Calculate the cat's movement towards the player
         //     Update cat position to follow the player
-        gameObject.transform.position = _player.transform.position;
+        if (followPlayer != null)
+        {
+            float distance = Vector2.Distance(transform.position, followPlayer.transform.position);
+
+            if (distance > _stoppingDistance)
+            {
+                transform.position = Vector2.Lerp(transform.position, followPlayer.position, _followSpeed * Time.deltaTime);
+            }
+        }
     }
 
-    //     Function to toggle following behavior on/off
-    //function toggleFollowing() :
+    // Function to toggle following behavior on/off (this can only be called when the player is near by)
+    // function toggleFollowing() :
     public void ToggleFollowing()
     {
         _isFollowing = !_isFollowing;
