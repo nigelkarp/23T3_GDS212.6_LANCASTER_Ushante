@@ -3,7 +3,7 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     public float moveSpeed = 3f;
-    public float detectionRange = 5f;
+    public float detectionRange = 3f;
 
     // Reference to box collider 2D of insidebounds
     [SerializeField] private GameObject insideBounds;
@@ -11,6 +11,8 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] EnemyCollision enemyCollision;
 
     private Transform player;
+
+    [SerializeField] private Transform[] _movePoints; // Array of move point transforms
 
     void Start()
     {
@@ -43,12 +45,8 @@ public class EnemyMovement : MonoBehaviour
 
         if (enemyCollision.enemyInBounds())
         {
-            // Define the bounds first
-            Vector2 minBounds = (Vector2)insideBoundsBoxCollider.bounds.min;
-            Vector2 maxBounds = (Vector2)insideBoundsBoxCollider.bounds.max;
-
-            // Make enemy patrol around this box
-            transform.Translate(new Vector2(Random.Range(insideBoundsBoxCollider.size.x, insideBoundsBoxCollider.size.y)) * moveSpeed * Time.deltaTime);
+            // Choose a random transform point from the array
+            // move towards that transform
         }
     
     }
