@@ -4,17 +4,22 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    //    enemyHealth = 75
-    //isAttacking = false
-    //player = reference to PlayerObject
+    private int _enemyHealth = 2; //    enemy Health 
+    
+    [SerializeField] private bool _isAttacking = false; //isAttacking = false
+    [SerializeField] private GameObject _player;        //player = reference to PlayerObject
 
     //// Update function for enemy AI
     //function Update() :
-    //    if (player.isInRange() and !player.isGameOver()):
-    //        isAttacking = true
-    //        attackPlayer()
-    //    else:
-    //        isAttacking = false
+    private void Update()
+    {
+        //    if (player.isInRange() and !player.isGameOver()):
+        //        isAttacking = true
+        //        attackPlayer()
+        //    else:
+        //        isAttacking = false
+    }
+
 
     //// Function to make the enemy attack the player
     //function attackPlayer():
