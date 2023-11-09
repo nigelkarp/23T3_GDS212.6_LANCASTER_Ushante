@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1616859835267484962}
   - component: {fileID: 7514784535542799347}
   - component: {fileID: 1800414482856473086}
-  - component: {fileID: 2574225667783864000}
+  - component: {fileID: 8986312346786839529}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -33,6 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8885983341515609745}
+  - {fileID: 5313387650086733787}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!70 &7514784535542799347
@@ -97,7 +98,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &2574225667783864000
+--- !u!114 &8986312346786839529
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,13 +107,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 231116449707173044}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28e40a68ca9697047a6ee6c4fc594983, type: 3}
+  m_Script: {fileID: 11500000, guid: 4da0301b7959aad449cb0a7ade1966bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  enemyHearts: 3
-  attackRange: 1.5
-  _playerTransform: {fileID: 2352539349593024256, guid: fc1acc3f617f63542aafa6f65eb01c86, type: 3}
+  moveSpeed: 3
+  rotationSpeed: 90
+  minX: 4.9
+  maxX: -4.9
+  minY: -2.5
+  maxY: 2.5
 --- !u!1 &1085625847854743974
 GameObject:
   m_ObjectHideFlags: 0
@@ -197,3 +200,34 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &5024763137977277025
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5313387650086733787}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5313387650086733787
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5024763137977277025}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.98, y: 2.98, z: -0.007141282}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1616859835267484962}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

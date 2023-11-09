@@ -6,9 +6,12 @@ public class EnemyManager : MonoBehaviour
 {
     [SerializeField] private Transform _playerTransform; // Reference to the player transform
     [SerializeField] private Transform _enemyParent; // The parent transform that the enemy will be instantiated after
-    [SerializeField] private float _spawnRate = 5.0f; // Time between enemy spawns
+
     [SerializeField] private GameObject _enemyPrefab; // Reference to the enemy prefab
+
     [SerializeField] private Transform[] _spawnPoints; // Array of spawn point transforms
+
+    [SerializeField] private float _spawnRate = 5.0f; // Time between enemy spawns
     [SerializeField] private int _maxEnemies = 4; // Maximum number of enemies
     [SerializeField] private float _attackRange = 1.5f; // Enemy attack range
 
@@ -57,7 +60,7 @@ public class EnemyManager : MonoBehaviour
             }
 
             // Set any initial parameters for the enemy
-            enemyScript.Initialize(_playerTransform, _attackRange);
+            //enemyScript.Initialize(_playerTransform, _attackRange);
 
             _enemies.Add(newEnemy);
         }

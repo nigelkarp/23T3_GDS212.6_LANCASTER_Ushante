@@ -4,21 +4,31 @@ using UnityEngine;
 
 public class EnemyCollision : MonoBehaviour
 {
-    private Transform playerTransform; // Reference to the player's transform
+    [SerializeField] private bool _isPlayerNearEnemy = false; // bool representing that player is in bounds
 
-    void Start()
+    public CircleCollider2D enemyDetectionRangeCollider;
+
+    // Collision2DEnter that will set this bool to true
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        if (other.CompareTag("Player"))
+        {
+            _isPlayerNearEnemy = true;
+        }
+    }
+    // trigger2DExit that will set this bool to false
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            _isPlayerNearEnemy = false;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    // Return the bool
+    public bool isPlayerNearEnemy()
     {
-        // Calculate the movement direction from the enemy to the player
-        Vector2 directionToPlayer = playerTransform.position - transform.position;
-
-        // Move the enemy in the opposite direction of the player's movement
-        transform.Translate(-directionToPlayer.normalized * Time.deltaTime);
+        return _isPlayerNearEnemy;
     }
 }
 
