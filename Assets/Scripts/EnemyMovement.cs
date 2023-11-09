@@ -5,12 +5,12 @@ public class EnemyMovement : MonoBehaviour
     public float moveSpeed = 3f;
     public float detectionRange = 5f;
 
-    private Transform player;
+    // Reference to box collider 2D of insidebounds
+    [SerializeField] private GameObject insideBounds;
 
-    [SerializeField] private float _minX = -5f;
-    [SerializeField] private float _maxX = 5f;
-    [SerializeField] private float _minY = -5f;
-    [SerializeField] private float _maxY = 5f;
+    [SerializeField] EnemyCollision enemyCollision;
+
+    private Transform player;
 
     void Start()
     {
@@ -38,9 +38,18 @@ public class EnemyMovement : MonoBehaviour
 
     void Patrol()
     {
-        // Implement your own patrol logic here.
-        // You can move the enemy randomly or along a predefined path.
+        //transform.Translate(new Vector2(Random.Range(_minX, _maxX), Random.Range(_minY, _maxY)) * moveSpeed * Time.deltaTime);
+        BoxCollider2D insideBoundsBoxCollider = insideBounds.GetComponent<BoxCollider2D>();
 
-        transform.Translate(new Vector2(Random.Range(_minX, _maxX), Random.Range(_minY, _maxY)) * moveSpeed * Time.deltaTime);
+        if (enemyCollision.enemyInBounds())
+        {
+            // Define the bounds first
+            Vector2 minBounds = (Vector2)insideBoundsBoxCollider.bounds.min;
+            Vector2 maxBounds = (Vector2)insideBoundsBoxCollider.bounds.max;
+
+            // Make enemy patrol around this box
+            transform.Translate(new Vector2(Random.Range(insideBoundsBoxCollider.size.x, insideBoundsBoxCollider.size.y)) * moveSpeed * Time.deltaTime);
+        }
+    
     }
 }

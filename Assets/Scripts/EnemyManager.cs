@@ -19,62 +19,62 @@ public class EnemyManager : MonoBehaviour
 
     void Start()
     {
-        _enemies = new List<GameObject>();
-        StartCoroutine(SpawnEnemies());
+        //_enemies = new List<GameObject>();
+        //StartCoroutine(SpawnEnemies());
     }
 
     void Update()
     {
-        // Manage and update the list of enemies
-        UpdateEnemyList();
+        ////Manage and update the list of enemies
+        //UpdateEnemyList();
     }
 
-    IEnumerator SpawnEnemies()
-    {
-        while (true)
-        {
-            if (_enemies.Count < _maxEnemies)
-            {
-                SpawnEnemy();
-            }
+    //IEnumerator SpawnEnemies()
+    //{
+    //    while (true)
+    //    {
+    //        if (_enemies.Count < _maxEnemies)
+    //        {
+    //            SpawnEnemy();
+    //        }
 
-            yield return new WaitForSeconds(_spawnRate);
-        }
-    }
+    //        yield return new WaitForSeconds(_spawnRate);
+    //    }
+    //}
 
-    void SpawnEnemy()
-    {
-        if (_enemyPrefab != null && _spawnPoints.Length > 0)
-        {
-            Transform spawnPoint = _spawnPoints[Random.Range(0, _spawnPoints.Length)];
-            GameObject newEnemy = Instantiate(_enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+    //void SpawnEnemy()
+    //{
+    //    if (_enemyPrefab != null && _spawnPoints.Length > 0)
+    //    {
+    //        Transform spawnPoint = _spawnPoints[Random.Range(0, _spawnPoints.Length)];
+    //        GameObject newEnemy = Instantiate(_enemyPrefab, spawnPoint.position, spawnPoint.rotation);
 
-            // Set the enemies empty as the parent
-            newEnemy.transform.parent = _enemyParent;
+    ////         Set the enemies empty as the parent
+    //        newEnemy.transform.parent = _enemyParent;
 
-            // Attach the Enemy script to the spawned enemy (if not already attached)
-            Enemy enemyScript = newEnemy.GetComponent<Enemy>();
-            if (enemyScript == null)
-            {
-                enemyScript = newEnemy.AddComponent<Enemy>();
-            }
+    ////         Attach the Enemy script to the spawned enemy (if not already attached)
+    //        Enemy enemyScript = newEnemy.GetComponent<Enemy>();
+    //        if (enemyScript == null)
+    //        {
+    //            enemyScript = newEnemy.AddComponent<Enemy>();
+    //        }
 
-            // Set any initial parameters for the enemy
-            //enemyScript.Initialize(_playerTransform, _attackRange);
+    ////         Set any initial parameters for the enemy
+    //        enemyScript.Initialize(_playerTransform, _attackRange);
 
-            _enemies.Add(newEnemy);
-        }
-    }
+    //        _enemies.Add(newEnemy);
+    //    }
+    //}
 
-    void UpdateEnemyList()
-    {
-        for (int i = _enemies.Count - 1; i >= 0; i--)
-        {
-            if (_enemies[i] == null || !_enemies[i].activeSelf)
-            {
-                _enemies.RemoveAt(i);
-            }
-        }
-    }
+    //void UpdateEnemyList()
+    //{
+    //    for (int i = _enemies.Count - 1; i >= 0; i--)
+    //    {
+    //        if (_enemies[i] == null || !_enemies[i].activeSelf)
+    //        {
+    //            _enemies.RemoveAt(i);
+    //        }
+    //    }
+    //}
 }
 
