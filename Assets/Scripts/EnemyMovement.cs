@@ -2,12 +2,13 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    public float moveSpeed = 3f;
-    public float detectionRange = 3f;
+    [SerializeField] private float moveSpeed = 3f;
+    [SerializeField] private float detectionRange = 3f;
 
-    // Reference to box collider 2D of insidebounds
-    [SerializeField] private GameObject insideBounds;
-
+    private Transform currentMovePoint;
+    private bool isMoving = false;
+    
+    [SerializeField] private GameObject insideBounds; // Reference to box collider 2D of insidebounds
     [SerializeField] EnemyCollision enemyCollision;
 
     private Transform player;
@@ -46,8 +47,11 @@ public class EnemyMovement : MonoBehaviour
         if (enemyCollision.enemyInBounds())
         {
             // Choose a random transform point from the array
+            Transform currentMovePoint = _movePoints[Random.Range(0, _movePoints.Length)];
+
             // move towards that transform
+            transform.position = Vector2.MoveTowards(transform.position, currentMovePoint.position, moveSpeed * Time.deltaTime);
         }
-    
+
     }
 }
