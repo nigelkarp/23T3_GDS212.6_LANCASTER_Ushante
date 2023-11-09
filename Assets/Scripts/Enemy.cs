@@ -53,6 +53,8 @@ public class Enemy : MonoBehaviour
 
     bool IsPlayerInRange()
     {
+        // up date this so it uses a range given by a collider, to go to the player
+
         Vector3 playerPosition = _playerTransform.position;
         Vector3 enemyPosition = transform.position;
         float distanceToPlayer = Vector3.Distance(playerPosition, enemyPosition);

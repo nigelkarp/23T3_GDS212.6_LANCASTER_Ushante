@@ -67,7 +67,7 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.06, y: 0.06}
+  m_Offset: {x: -0.12, y: 0.39}
   m_Size: {x: 0.9, y: 1.45}
   m_Direction: 0
 --- !u!50 &1800414482856473086
@@ -96,7 +96,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &2574225667783864000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,8 +110,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  enemyHearts: 10
+  enemyHearts: 3
   attackRange: 1.5
+  _playerTransform: {fileID: 2352539349593024256, guid: fc1acc3f617f63542aafa6f65eb01c86, type: 3}
 --- !u!1 &1085625847854743974
 GameObject:
   m_ObjectHideFlags: 0
