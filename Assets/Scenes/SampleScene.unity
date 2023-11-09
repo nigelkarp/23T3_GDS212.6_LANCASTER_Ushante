@@ -873,8 +873,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff2f11fa3c467e04cb825d7a279d793b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isAttacking: 0
-  _player: {fileID: 979657582}
+  _playerTransform: {fileID: 979657583}
+  _spawnRate: 5
+  _enemyPrefab: {fileID: 0}
+  _spawnPoints: []
+  _maxEnemies: 10
+  _attackRange: 1.5
 --- !u!1 &1903518598
 GameObject:
   m_ObjectHideFlags: 0
@@ -1094,6 +1098,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2574225667783864000, guid: 6e483f1608949564b95ec0ee40241b35, type: 3}
+      propertyPath: _playerTransform
+      value: 
+      objectReference: {fileID: 979657583}
     - target: {fileID: 8060466749395086305, guid: 6e483f1608949564b95ec0ee40241b35, type: 3}
       propertyPath: m_FlipX
       value: 1

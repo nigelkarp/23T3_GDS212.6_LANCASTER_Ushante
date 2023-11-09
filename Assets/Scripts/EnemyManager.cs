@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    [SerializeField] private GameObject _player; // Reference to the player
+    [SerializeField] private Transform _playerTransform; // Reference to the player transform
     [SerializeField] private float _spawnRate = 5.0f; // Time between enemy spawns
     [SerializeField] private GameObject _enemyPrefab; // Reference to the enemy prefab
     [SerializeField] private Transform[] _spawnPoints; // Array of spawn point transforms
@@ -53,7 +53,7 @@ public class EnemyManager : MonoBehaviour
             }
 
             // Set any initial parameters for the enemy
-            enemyScript.Initialize(_player, _attackRange);
+            enemyScript.Initialize(_playerTransform, _attackRange);
 
             _enemies.Add(newEnemy);
         }

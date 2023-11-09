@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1616859835267484962}
   - component: {fileID: 7514784535542799347}
   - component: {fileID: 1800414482856473086}
-  - component: {fileID: 3386035267607868930}
+  - component: {fileID: 2574225667783864000}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -97,7 +97,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &3386035267607868930
+--- !u!114 &2574225667783864000
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

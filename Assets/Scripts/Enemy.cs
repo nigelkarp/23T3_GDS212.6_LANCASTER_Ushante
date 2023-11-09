@@ -8,21 +8,16 @@ public class Enemy : MonoBehaviour
     public int enemyHearts = 3; // Adjust as needed
     public float attackRange = 1.5f; // Adjust as needed
 
-    private Transform player;
-    private bool isAttacking = false;
+    [SerializeField] private Transform _playerTransform;
 
-    void Start()
-    {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        // You can use tags or other methods to find the player object.
-    }
+    private bool _isAttacking = false;
 
     void Update()
     {
-        if (player != null)
+        if (_playerTransform != null)
         {
             // Check if the player is in attack range and the enemy is not currently attacking
-            if (IsPlayerInRange() && !isAttacking)
+            if (IsPlayerInRange() && !_isAttacking)
             {
                 // Calculate the direction to move towards the player
                 Vector3 direction = CalculateDirectionToPlayer();
@@ -38,14 +33,14 @@ public class Enemy : MonoBehaviour
             }
             else
             {
-                isAttacking = false;
+                _isAttacking = false;
             }
         }
     }
 
     Vector3 CalculateDirectionToPlayer()
     {
-        Vector3 playerPosition = player.position;
+        Vector3 playerPosition = _playerTransform.position;
         Vector3 enemyPosition = transform.position;
         Vector3 direction = (playerPosition - enemyPosition).normalized;
         return direction;
@@ -58,7 +53,7 @@ public class Enemy : MonoBehaviour
 
     bool IsPlayerInRange()
     {
-        Vector3 playerPosition = player.position;
+        Vector3 playerPosition = _playerTransform.position;
         Vector3 enemyPosition = transform.position;
         float distanceToPlayer = Vector3.Distance(playerPosition, enemyPosition);
         return distanceToPlayer <= attackRange;
@@ -66,7 +61,7 @@ public class Enemy : MonoBehaviour
 
     bool IsCloseToPlayer()
     {
-        Vector3 playerPosition = player.position;
+        Vector3 playerPosition = _playerTransform.position;
         Vector3 enemyPosition = transform.position;
         float distanceToPlayer = Vector3.Distance(playerPosition, enemyPosition);
         return distanceToPlayer <= attackRange;
@@ -74,13 +69,13 @@ public class Enemy : MonoBehaviour
 
     void AttackPlayer()
     {
-        isAttacking = true;
+        _isAttacking = true;
         // Implement enemy's attack behavior, e.g., inflict damage on the player
     }
 
     public void Initialize(Transform playerTransform, float attackRange)
     {
-        player = playerTransform;
+        _playerTransform = playerTransform;
         this.attackRange = attackRange;
     }
 
