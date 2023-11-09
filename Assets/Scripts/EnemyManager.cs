@@ -4,33 +4,70 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    private int _enemyHealth = 2; //    enemy Health 
-    
-    [SerializeField] private bool _isAttacking = false; //isAttacking = false
-    [SerializeField] private GameObject _player;        //player = reference to PlayerObject
+    [SerializeField] private GameObject _player; // Reference to the player
+    [SerializeField] private float _spawnRate = 5.0f; // Time between enemy spawns
+    [SerializeField] private GameObject _enemyPrefab; // Reference to the enemy prefab
+    [SerializeField] private Transform[] _spawnPoints; // Array of spawn point transforms
+    [SerializeField] private int _maxEnemies = 10; // Maximum number of enemies
+    [SerializeField] private float _attackRange = 1.5f; // Enemy attack range
 
-    //// Update function for enemy AI
-    //function Update() :
-    private void Update()
+    private List<GameObject> _enemies; // List to track active enemies
+
+    void Start()
     {
-        //    if (player.isInRange() and !player.isGameOver()):
-        //        isAttacking = true
-        //        attackPlayer()
-        //    else:
-        //        isAttacking = false
+        _enemies = new List<GameObject>();
+        StartCoroutine(SpawnEnemies());
     }
 
+    void Update()
+    {
+        // Manage and update the list of enemies
+        UpdateEnemyList();
+    }
 
-    //// Function to make the enemy attack the player
-    //function attackPlayer():
-    //    // Calculate enemy's attack behavior
-    //    // Inflict damage on the player
+    IEnumerator SpawnEnemies()
+    {
+        while (true)
+        {
+            if (_enemies.Count < _maxEnemies)
+            {
+                SpawnEnemy();
+            }
 
-    //    // Function to get the damage value for the enemy
-    //function getDamage():
-    //    return enemyHealth / 10
+            yield return new WaitForSeconds(_spawnRate);
+        }
+    }
 
-    //// Function to check if the enemy is in the player's attack range
-    //function isInRange():
-    //    // Implement logic to check if enemy is in player's attack range
+    void SpawnEnemy()
+    {
+        if (_enemyPrefab != null && _spawnPoints.Length > 0)
+        {
+            Transform spawnPoint = _spawnPoints[Random.Range(0, _spawnPoints.Length)];
+            GameObject newEnemy = Instantiate(_enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+
+            // Attach the Enemy script to the spawned enemy (if not already attached)
+            Enemy enemyScript = newEnemy.GetComponent<Enemy>();
+            if (enemyScript == null)
+            {
+                enemyScript = newEnemy.AddComponent<Enemy>();
+            }
+
+            // Set any initial parameters for the enemy
+            enemyScript.Initialize(_player, _attackRange);
+
+            _enemies.Add(newEnemy);
+        }
+    }
+
+    void UpdateEnemyList()
+    {
+        for (int i = _enemies.Count - 1; i >= 0; i--)
+        {
+            if (_enemies[i] == null || !_enemies[i].activeSelf)
+            {
+                _enemies.RemoveAt(i);
+            }
+        }
+    }
 }
+
